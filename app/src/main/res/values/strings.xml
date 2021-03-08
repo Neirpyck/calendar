@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Calendar</string>
+    <string name="add">Add</string>
+    <string name="calendar">Calendar</string>
+    <string name="title_activity_calendar">CalendarActivity</string>
+    <string name="add_event">Add event</string>
+    <string name="event_default_name">Event Name</string>
+    <string name="event_default_creator">Event Creator</string>
+    <string name="event_default_date">Event Date</string>
+    <string name="date_picked">Event Date</string>
+    <string-array name="array_technology">
+        <item>Android</item>
+        <item>Java</item>
+        <item>Php</item>
+        <item>Hadoop</item>
+        <item>Sap</item>
+        <item>Python</item>
+        <item>Ajax</item>
+        <item>C++</item>
+        <item>Ruby</item>
+        <item>Rails</item>
+        <item>.Net</item>
+        <item>Perl</item>
+    </string-array>
+</resources>
