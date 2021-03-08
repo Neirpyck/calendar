@@ -1,5 +1,4 @@
-  CalendarView simpleCalendarView;
-    Date selectedDate =package com.example.calendar;
+package com.example.calendar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -52,8 +51,8 @@ import java.util.Map;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference events = database.getReference("events");
         DatabaseReference dates = database.getReference("dates");
-
-   new Date(System.currentTimeMillis());
+        CalendarView simpleCalendarView;
+        Date selectedDate = new Date(System.currentTimeMillis());
 
     SimpleDateFormat BDD_FORMAT = new SimpleDateFormat("dd-MM-Y");
 
