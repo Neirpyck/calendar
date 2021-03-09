@@ -31,7 +31,7 @@
 
     <EditText
         android:id="@+id/dateTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="296dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView1"
         android:layout_alignParentRight="true"
@@ -39,11 +39,28 @@
         android:enabled="false"
         android:hint="Date"
         android:inputType="date"
-        android:text="@string/date_picked" />
+        android:text="@string/date_picked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/participantsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Participants"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.277"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.061" />
 
         <Button
             android:id="@+id/btCreateEvent"
@@ -54,6 +71,19 @@
             android:text="Create"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="62dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="64dp"
+            android:text="+"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/participantsTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.076" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

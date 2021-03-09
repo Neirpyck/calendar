@@ -6,23 +6,18 @@ public class Event {
     private String _creator;
     private String _title;
     private String _date;
-    //private ArrayList<User> _participants;
+    private ArrayList<String> _participants;
 
 
-    public Event(String creator, String title, String date) {
+    public Event(String creator, String title, String date, ArrayList<String> participants) {
         _date = date;
         _creator = creator;
         _title = title;
+        _participants = participants;
     }
 
     public Event(){}
 
-    public Event(String creator, String title, String date,ArrayList<User> participants) {
-        _date = date;
-        _creator = creator;
-        _title = title;
-     //   _participants = participants;
-    }
 
     /*
     public ArrayList<User> get_participants() {
@@ -43,14 +38,11 @@ public class Event {
         return _title;
     }
 
+    public ArrayList<String> get_participants() { return _participants;}
+
     public void set_title(String _title) {
         this._title = _title;
     }
 
-    /*
-    public void set_participants(User participant, int position) {
-        this._participants.set(position, participant);
-    }
-    */
 
 }
