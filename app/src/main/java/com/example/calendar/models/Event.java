@@ -7,13 +7,15 @@ public class Event {
     private String _title;
     private String _date;
     private ArrayList<String> _participants;
+    private boolean _isRappel;
 
 
-    public Event(String creator, String title, String date, ArrayList<String> participants) {
+    public Event(String creator, String title, String date, ArrayList<String> participants, boolean isRappel) {
         _date = date;
         _creator = creator;
         _title = title;
         _participants = participants;
+        _isRappel = isRappel;
     }
 
     public Event(){}
@@ -38,11 +40,15 @@ public class Event {
         return _title;
     }
 
+    public boolean get_isRappel() { return _isRappel; }
+
     public ArrayList<String> get_participants() { return _participants;}
 
     public void set_title(String _title) {
         this._title = _title;
     }
+
+    public void set_isRappel(Boolean _isRappel) {this._isRappel = _isRappel;}
 
 
 }

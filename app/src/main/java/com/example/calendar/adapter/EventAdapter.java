@@ -1,20 +1,28 @@
 package com.example.calendar.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.calendar.R;
 import com.example.calendar.models.Event;
-import com.example.calendar.models.User;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static android.graphics.Color.rgb;
 
 public class EventAdapter extends BaseAdapter {
 
@@ -35,13 +43,13 @@ public class EventAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Event getItem(int position) {
         return eventsList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -65,6 +73,28 @@ public class EventAdapter extends BaseAdapter {
 
         TextView eventTitleView = view.findViewById(R.id.event_title);
         eventTitleView.setText(eventTitle);
+
+        if (currentEvent.get_isRappel()) {
+            eventTitleView.setTextColor(rgb(255, 0, 0));
+            view.setOnClickListener(v -> {
+                View popUpView = inflater.inflate(R.layout.popupwindow, null);
+                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                boolean focusable = true;
+                final PopupWindow popupWindow = new PopupWindow(popUpView, width, height, focusable);
+                popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+
+                popUpView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        popupWindow.dismiss();
+                        return true;
+                    }
+                });
+            });
+        } else {
+            eventTitleView.setTextColor(rgb(0, 0, 0));
+        }
 
         TextView eventCreatorView = view.findViewById(R.id.event_creator);
         eventCreatorView.setText(eventCreator);

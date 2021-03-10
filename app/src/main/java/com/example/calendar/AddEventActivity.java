@@ -1,30 +1,26 @@
 package com.example.calendar;
 
 import android.content.Intent;
-import android.icu.util.LocaleData;
 import android.os.Bundle;
-import android.text.Editable;
-import android.view.LayoutInflater;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.calendar.adapter.ParticipantsAdapter;
 import com.example.calendar.models.Event;
-import com.example.calendar.models.User;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 
-import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.Locale;
 
 public class AddEventActivity extends AppCompatActivity {
     //TODO: User name
@@ -34,11 +30,21 @@ public class AddEventActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference events = database.getReference("events");
     DatabaseReference dates = database.getReference("dates");
+    ArrayList<String> participantsList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
+
+        participantsList.add("Cyp");
+        ListView participantsListView = findViewById(R.id.participantsListView);
+        ParticipantsAdapter participantAdapter = new ParticipantsAdapter(this, participantsList);
+        participantsListView.setAdapter(participantAdapter);
+
+
+
 
         //Get the date from previous screen
         Intent intent = getIntent();
@@ -53,14 +59,21 @@ public class AddEventActivity extends AppCompatActivity {
         SimpleDateFormat BDD_FORMAT = new SimpleDateFormat("dd-MM-Y");
 
 
+
+
         Button createButton = (Button) findViewById(R.id.btCreateEvent);
         createButton.setOnClickListener((v -> {
-            Event event =  new Event(user, "", date.toString(), new ArrayList<String>());
+            Event event =  new Event(user, "", date.toString(), new ArrayList<String>(), false);
 
             //Get title
             EditText titleInput = findViewById(R.id.ipTitle);
             String title = titleInput.getText().toString();
             event.set_title(title);
+
+            //Get is Rappel
+            CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox2);
+            Boolean isRappel = checkBox.isChecked();
+            event.set_isRappel(isRappel);
 
             //Create event on DB
             event.get_date();

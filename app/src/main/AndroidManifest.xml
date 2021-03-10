@@ -19,7 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddEventActivity" android:parentActivityName=".CalendarActivity"/>
+        <activity android:name=".AddEventActivity"
+            android:parentActivityName=".CalendarActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+
         <activity android:name=".MainActivity"></activity>
     </application>
 

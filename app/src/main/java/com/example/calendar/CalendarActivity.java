@@ -3,9 +3,16 @@ package com.example.calendar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.CalendarView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +33,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static android.graphics.Color.rgb;
 
 
 public class CalendarActivity extends AppCompatActivity {
@@ -50,6 +59,32 @@ public class CalendarActivity extends AppCompatActivity {
         ListView eventListView = findViewById(R.id.eventListView);
         EventAdapter eventAdapter = new EventAdapter(this, eventsList);
         eventListView.setAdapter(eventAdapter);
+
+        for (int i = 0 ; i < eventsList.size() ; i++) {
+            Event event = eventsList.get(i);
+            if (event.get_isRappel()) {
+                Event currentEvent = eventAdapter.getItem(i);
+                Log.d("click", event.get_title());
+                /*currentEvent.setOnClickListener(v -> {
+                    View popUpView = inflater.inflate(R.layout.popupwindow, null);
+                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    boolean focusable = true;
+                    final PopupWindow popupWindow = new PopupWindow(popUpView, width, height, focusable);
+                    popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+
+                    popUpView.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                    });
+                });*/
+            } else {
+            }
+        }
+
 
         events.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -91,7 +126,6 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 selectedDate = new Date(year - 1900, month, dayOfMonth);
-                System.out.println(selectedDate.toString());
 
                 events.get().addOnCompleteListener(task -> {
                     task.getResult().getChildren();
@@ -140,6 +174,27 @@ public class CalendarActivity extends AppCompatActivity {
 
 
     }
+
+
+/*    public void onReminderClick(View view) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popUpView = inflater.inflate(R.layout.popupwindow, null);
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        final PopupWindow popupWindow = new PopupWindow(popUpView, width, height, focusable);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        popUpView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+    }*/
+
+
 
 }
 
